@@ -1,0 +1,10 @@
+llvm-project: 16.0.0rc2
+kernel: v6.1
+https://outflux.net/blog/archives/2019/11/20/experimenting-with-clang-cfi-on-upstream-linux/
+
+./copy2vm vuln_module/vuln.ko  && ./copy2vm poc
+
+
+then:
+insmod vuln.ko
+chmod 666 /dev/vuln

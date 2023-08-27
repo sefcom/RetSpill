@@ -1,0 +1,4 @@
+git clone --branch next-fgkaslr --depth 1 https://github.com/alobakin/linux
+commit: df4dfe6dc071a48167a5e8c9b54cc6e59eddc8a7
+
+compile with clang-14

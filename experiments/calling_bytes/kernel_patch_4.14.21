@@ -1,0 +1,187 @@
+diff --git a/arch/x86/entry/calling.h b/arch/x86/entry/calling.h
+index dce7092a..facc7dd1 100644
+--- a/arch/x86/entry/calling.h
++++ b/arch/x86/entry/calling.h
+@@ -133,6 +133,56 @@ For 32-bit we have the following conventions - kernel is built with
+ 	UNWIND_HINT_REGS
+ .endm
+ 
++.macro NEW_PUSH_AND_CLEAR_REGS rdx=%rdx rax=%rax
++	/*
++	 * Push registers and sanitize registers of values that a
++	 * speculation attack might otherwise want to exploit. The
++	 * lower registers are likely clobbered well before they
++	 * could be put to use in a speculative execution gadget.
++	 * Interleave XOR with PUSH for better uop scheduling:
++	 */
++	pushq   %rdi		/* pt_regs->di */
++	movabsq $0x4141414141414141, %rdi
++	pushq   %rsi		/* pt_regs->si */
++	movabsq $0x4141414141414141, %rsi
++	pushq	\rdx		/* pt_regs->dx */
++	movabsq $0x4141414141414141, %rdx
++	pushq   %rcx		/* pt_regs->cx */
++	movabsq $0x4141414141414141, %rcx
++	pushq   \rax		/* pt_regs->ax */
++	movabsq $0x4141414141414141, %rax
++	pushq   %r8		/* pt_regs->r8 */
++	// xorq    %r8, %r8	/* nospec   r8 */
++	movabsq $0x4141414141414141, %r8
++	pushq   %r9		/* pt_regs->r9 */
++	// xorq    %r9, %r9	/* nospec   r9 */
++	movabsq $0x4141414141414141, %r9
++	pushq   %r10		/* pt_regs->r10 */
++	// xorq    %r10, %r10	/* nospec   r10 */
++	movabsq $0x4141414141414141, %r10
++	pushq   %r11		/* pt_regs->r11 */
++	// xorq    %r11, %r11	/* nospec   r11*/
++	movabsq $0x4141414141414141, %r11
++	pushq	%rbx		/* pt_regs->rbx */
++	// xorl    %ebx, %ebx	/* nospec   rbx*/
++	movabsq $0x4141414141414141, %rbx
++	pushq	%rbp		/* pt_regs->rbp */
++	// xorl    %ebp, %ebp	/* nospec   rbp*/
++	movabsq $0x4141414141414141, %rbp
++	pushq	%r12		/* pt_regs->r12 */
++	// xorq    %r12, %r12	/* nospec   r12*/
++	movabsq $0x4141414141414141, %r12
++	pushq	%r13		/* pt_regs->r13 */
++	// xorq    %r13, %r13	/* nospec   r13*/
++	movabsq $0x4141414141414141, %r13
++	pushq	%r14		/* pt_regs->r14 */
++	// xorq    %r14, %r14	/* nospec   r14*/
++	movabsq $0x4141414141414141, %r14
++	pushq	%r15		/* pt_regs->r15 */
++	// xorq    %r15, %r15	/* nospec   r15*/
++	movabsq $0x4141414141414141, %r15
++	UNWIND_HINT_REGS
++.endm
+ .macro POP_REGS pop_rdi=1 skip_r11rcx=0
+ 	popq %r15
+ 	popq %r14
+diff --git a/arch/x86/entry/common.c b/arch/x86/entry/common.c
+index 60e21ccf..f21c113f 100644
+--- a/arch/x86/entry/common.c
++++ b/arch/x86/entry/common.c
+@@ -268,6 +268,7 @@ __visible inline void syscall_return_slowpath(struct pt_regs *regs)
+ }
+ 
+ #ifdef CONFIG_X86_64
++int arg_map[] = {3, 3, 3, 1, 2, 2, 2, 3, 3, 6, 3, 2, 1, 4, 4, 1, 3, 4, 4, 3, 3, 2, 1, 5, 0, 5, 3, 3, 3, 3, 3, 3, 1, 2, 0, 2, 2, 1, 3, 0, 4, 3, 3, 3, 6, 6, 3, 3, 2, 3, 2, 3, 3, 4, 5, 5, 5, 0, 0, 3, 1, 4, 2, 1, 3, 3, 4, 1, 2, 4, 5, 3, 3, 2, 1, 1, 2, 2, 3, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 3, 2, 2, 3, 3, 3, 1, 2, 2, 2, 1, 1, 4, 0, 3, 0, 1, 1, 0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 4, 3, 2, 2, 2, 3, 1, 1, 2, 2, 2, 3, 2, 3, 2, 2, 3, 1, 1, 1, 2, 2, 2, 1, 0, 0, 3, 2, 1, 5, 2, 1, 2, 1, 0, 1, 2, 5, 2, 2, 1, 4, 2, 2, 1, 3, 6, 3, 2, 6, 6, 4, 6, 6, 6, 6, 6, 6, 0, 3, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 6, 3, 3, 1, 2, 1, 5, 3, 3, 1, 3, 1, 6, 6, 5, 3, 1, 0, 4, 4, 3, 4, 2, 1, 1, 2, 2, 2, 4, 1, 4, 4, 3, 2, 6, 6, 3, 5, 4, 1, 5, 5, 2, 3, 4, 5, 5, 4, 5, 3, 2, 0, 3, 2, 4, 4, 3, 4, 5, 3, 4, 3, 4, 5, 3, 4, 3, 3, 6, 5, 1, 2, 3, 6, 4, 4, 4, 6, 4, 6, 3, 2, 1, 4, 4, 2, 4, 4, 2, 1, 3, 2, 1, 5, 5, 4, 5, 5, 2, 5, 4, 5, 3, 2, 1, 4, 2, 3, 6, 6, 5, 3, 3, 4, 5, 3, 3, 2, 5, 3, 5, 1, 2, 3, 6, 6, 6, 4, 2, 1, 5};
+ __visible void do_syscall_64(struct pt_regs *regs)
+ {
+ 	struct thread_info *ti = current_thread_info();
+@@ -286,13 +287,88 @@ __visible void do_syscall_64(struct pt_regs *regs)
+ 	 */
+ 	if (likely((nr & __SYSCALL_MASK) < NR_syscalls)) {
+ 		nr = array_index_nospec(nr & __SYSCALL_MASK, NR_syscalls);
++		int arg_num = arg_map[nr];
++		switch(arg_num) {
++		case 0:
++		regs->ax = sys_call_table[nr](
++			0x4141414141414141, 0x4141414141414141, 0x4141414141414141,
++			0x4141414141414141, 0x4141414141414141, 0x4141414141414141);
++			break;
++		case 1:
++		regs->ax = sys_call_table[nr](
++			regs->di, 0x4141414141414141, 0x4141414141414141,
++			0x4141414141414141, 0x4141414141414141, 0x4141414141414141);
++			break;
++		case 2:
++		regs->ax = sys_call_table[nr](
++			regs->di, regs->si, 0x4141414141414141,
++			0x4141414141414141, 0x4141414141414141, 0x4141414141414141);
++			break;
++		case 3:
++		regs->ax = sys_call_table[nr](
++			regs->di, regs->si, regs->dx,
++			0x4141414141414141, 0x4141414141414141, 0x4141414141414141);
++			break;
++		case 4:
++		regs->ax = sys_call_table[nr](
++			regs->di, regs->si, regs->dx,
++			regs->r10, 0x4141414141414141, 0x4141414141414141);
++			break;
++		case 5:
++		regs->ax = sys_call_table[nr](
++			regs->di, regs->si, regs->dx,
++			regs->r10, regs->r8, 0x4141414141414141);
++			break;
++		case 6:
+ 		regs->ax = sys_call_table[nr](
+ 			regs->di, regs->si, regs->dx,
+ 			regs->r10, regs->r8, regs->r9);
++			break;
++		default:
++			printk("unexpected argument number: %d, for syscall %d!\n", arg_num, nr);
++			panic("panicpanicpanic");
++		}
+ 	}
+ 
+ 	syscall_return_slowpath(regs);
+ }
++
++DEFINE_PER_CPU(long, syscall_cnt) = 0;
++DEFINE_PER_CPU(long, gadget_cnt) = 0;
++__visible void inspect_stack_64(long rsp)
++{
++
++	long *ptr;
++	long *arr;
++	long var1, var2;
++	int i;
++
++	// increase syscall counter
++	ptr = &get_cpu_var(syscall_cnt);
++	*ptr += 1;
++	var1 = *ptr;
++	put_cpu_var(syscall_cnt);
++
++	// increase taint counter
++	ptr = &get_cpu_var(gadget_cnt);
++	arr = (long *)(rsp-0x200);
++	for(i=0; i<0x200/8; i++) {
++		if(arr[i] == 0x4141414141414141) *ptr += 1;
++	}
++	var2 = *ptr;
++	put_cpu_var(gadget_cnt);
++
++	if(var1 % 0x10000 == 0) {
++		int cpu_id = get_cpu();
++		printk("cpu_id: %d, syscall_cnt: %lx, gadget_cnt: %lx\n", cpu_id, var1, var2);
++		put_cpu();
++	}
++}
++
++__visible void clear_stack_64(long rsp)
++{
++	memset((void *)(rsp-0x200), 0, 0x200-8);
++}
+ #endif
+ 
+ #if defined(CONFIG_X86_32) || defined(CONFIG_IA32_EMULATION)
+diff --git a/arch/x86/entry/entry_64.S b/arch/x86/entry/entry_64.S
+index 68a2d76e..b420da76 100644
+--- a/arch/x86/entry/entry_64.S
++++ b/arch/x86/entry/entry_64.S
+@@ -224,13 +224,19 @@ ENTRY(entry_SYSCALL_64)
+ GLOBAL(entry_SYSCALL_64_after_hwframe)
+ 	pushq	%rax				/* pt_regs->orig_ax */
+ 
+-	PUSH_AND_CLEAR_REGS rax=$-ENOSYS
++	NEW_PUSH_AND_CLEAR_REGS rax=$-ENOSYS
+ 
+ 	TRACE_IRQS_OFF
+ 
+ 	/* IRQs are off. */
+ 	movq	%rsp, %rdi
+ 	call	do_syscall_64		/* returns with IRQs disabled */
++	pushq	%rax
++	movq	%rsp, %rdi
++	call	inspect_stack_64	/* check taint on stack after each syscall execution */
++	movq	%rsp, %rdi
++	call	clear_stack_64		/* clear stack after the syscall execution */
++	popq    %rax
+ 
+ 	TRACE_IRQS_IRETQ		/* we're about to change IF */
+ 

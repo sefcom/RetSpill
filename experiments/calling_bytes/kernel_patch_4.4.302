@@ -1,0 +1,541 @@
+diff --git a/arch/x86/entry/common.c b/arch/x86/entry/common.c
+index 57be07f2..1818ae10 100644
+--- a/arch/x86/entry/common.c
++++ b/arch/x86/entry/common.c
+@@ -352,6 +352,43 @@ __visible inline void syscall_return_slowpath(struct pt_regs *regs)
+ 	prepare_exit_to_usermode(regs);
+ }
+ 
++DEFINE_PER_CPU(long, syscall_cnt) = 0;
++DEFINE_PER_CPU(long, gadget_cnt) = 0;
++__visible void inspect_stack_64(long rsp)
++{
++
++	long *ptr;
++	long *arr;
++	long var1, var2;
++	int i;
++
++	// increase syscall counter
++	ptr = &get_cpu_var(syscall_cnt);
++	*ptr += 1;
++	var1 = *ptr;
++	put_cpu_var(syscall_cnt);
++
++	// increase taint counter
++	ptr = &get_cpu_var(gadget_cnt);
++	arr = (long *)(rsp-0x200);
++	for(i=0; i<0x200/8; i++) {
++		if(arr[i] == 0x4141414141414141) *ptr += 1;
++	}
++	var2 = *ptr;
++	put_cpu_var(gadget_cnt);
++
++	if(var1 % 0x10000 == 0) {
++		int cpu_id = get_cpu();
++		printk("cpu_id: %d, syscall_cnt: %lx, gadget_cnt: %lx\n", cpu_id, var1, var2);
++		put_cpu();
++	}
++}
++
++__visible void clear_stack_64(long rsp)
++{
++	memset((void *)(rsp-0x200), 0, 0x200-0x8);
++}
++
+ #if defined(CONFIG_X86_32) || defined(CONFIG_IA32_EMULATION)
+ /*
+  * Does a 32-bit syscall.  Called with IRQs on and does all entry and
+diff --git a/arch/x86/entry/entry_64.S b/arch/x86/entry/entry_64.S
+index eec6defb..37f3472a 100644
+--- a/arch/x86/entry/entry_64.S
++++ b/arch/x86/entry/entry_64.S
+@@ -41,6 +41,347 @@
+ 
+ /* Avoid __ASSEMBLER__'ifying <linux/audit.h> just for this.  */
+ #include <linux/elf-em.h>
++
++	.globl	arg_map
++	.data
++	.align 32
++	.type	arg_map, @object
++	.size	arg_map, 1332
++arg_map:
++	.long	3
++	.long	3
++	.long	3
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	3
++	.long	3
++	.long	6
++	.long	3
++	.long	2
++	.long	1
++	.long	4
++	.long	4
++	.long	1
++	.long	3
++	.long	4
++	.long	4
++	.long	3
++	.long	3
++	.long	2
++	.long	1
++	.long	5
++	.long	0
++	.long	5
++	.long	3
++	.long	3
++	.long	3
++	.long	3
++	.long	3
++	.long	3
++	.long	1
++	.long	2
++	.long	0
++	.long	2
++	.long	2
++	.long	1
++	.long	3
++	.long	0
++	.long	4
++	.long	3
++	.long	3
++	.long	3
++	.long	6
++	.long	6
++	.long	3
++	.long	3
++	.long	2
++	.long	3
++	.long	2
++	.long	3
++	.long	3
++	.long	4
++	.long	5
++	.long	5
++	.long	5
++	.long	0
++	.long	0
++	.long	3
++	.long	1
++	.long	4
++	.long	2
++	.long	1
++	.long	3
++	.long	3
++	.long	4
++	.long	1
++	.long	2
++	.long	4
++	.long	5
++	.long	3
++	.long	3
++	.long	2
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	3
++	.long	2
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	1
++	.long	2
++	.long	2
++	.long	1
++	.long	2
++	.long	3
++	.long	2
++	.long	2
++	.long	3
++	.long	3
++	.long	3
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	1
++	.long	1
++	.long	4
++	.long	0
++	.long	3
++	.long	0
++	.long	1
++	.long	1
++	.long	0
++	.long	0
++	.long	2
++	.long	0
++	.long	0
++	.long	0
++	.long	2
++	.long	2
++	.long	2
++	.long	2
++	.long	3
++	.long	3
++	.long	3
++	.long	3
++	.long	1
++	.long	1
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	4
++	.long	3
++	.long	2
++	.long	2
++	.long	2
++	.long	3
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	3
++	.long	2
++	.long	3
++	.long	2
++	.long	2
++	.long	3
++	.long	1
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	1
++	.long	0
++	.long	0
++	.long	3
++	.long	2
++	.long	1
++	.long	5
++	.long	2
++	.long	1
++	.long	2
++	.long	1
++	.long	0
++	.long	1
++	.long	2
++	.long	5
++	.long	2
++	.long	2
++	.long	1
++	.long	4
++	.long	2
++	.long	2
++	.long	1
++	.long	3
++	.long	6
++	.long	3
++	.long	2
++	.long	6
++	.long	6
++	.long	4
++	.long	6
++	.long	6
++	.long	6
++	.long	6
++	.long	6
++	.long	6
++	.long	0
++	.long	3
++	.long	5
++	.long	5
++	.long	5
++	.long	4
++	.long	4
++	.long	4
++	.long	3
++	.long	3
++	.long	3
++	.long	2
++	.long	2
++	.long	2
++	.long	2
++	.long	1
++	.long	6
++	.long	3
++	.long	3
++	.long	1
++	.long	2
++	.long	1
++	.long	5
++	.long	3
++	.long	3
++	.long	1
++	.long	3
++	.long	1
++	.long	6
++	.long	6
++	.long	5
++	.long	3
++	.long	1
++	.long	0
++	.long	4
++	.long	4
++	.long	3
++	.long	4
++	.long	2
++	.long	1
++	.long	1
++	.long	2
++	.long	2
++	.long	2
++	.long	4
++	.long	1
++	.long	4
++	.long	4
++	.long	3
++	.long	2
++	.long	6
++	.long	6
++	.long	3
++	.long	5
++	.long	4
++	.long	1
++	.long	5
++	.long	5
++	.long	2
++	.long	3
++	.long	4
++	.long	5
++	.long	5
++	.long	4
++	.long	5
++	.long	3
++	.long	2
++	.long	0
++	.long	3
++	.long	2
++	.long	4
++	.long	4
++	.long	3
++	.long	4
++	.long	5
++	.long	3
++	.long	4
++	.long	3
++	.long	4
++	.long	5
++	.long	3
++	.long	4
++	.long	3
++	.long	3
++	.long	6
++	.long	5
++	.long	1
++	.long	2
++	.long	3
++	.long	6
++	.long	4
++	.long	4
++	.long	4
++	.long	6
++	.long	4
++	.long	6
++	.long	3
++	.long	2
++	.long	1
++	.long	4
++	.long	4
++	.long	2
++	.long	4
++	.long	4
++	.long	2
++	.long	1
++	.long	3
++	.long	2
++	.long	1
++	.long	5
++	.long	5
++	.long	4
++	.long	5
++	.long	5
++	.long	2
++	.long	5
++	.long	4
++	.long	5
++	.long	3
++	.long	2
++	.long	1
++	.long	4
++	.long	2
++	.long	3
++	.long	6
++	.long	6
++	.long	5
++	.long	3
++	.long	3
++	.long	4
++	.long	5
++	.long	3
++	.long	3
++	.long	2
++	.long	5
++	.long	3
++	.long	5
++	.long	1
++	.long	2
++	.long	3
++	.long	6
++	.long	6
++	.long	6
++	.long	4
++	.long	2
++	.long	1
++	.long	5
++
+ #define AUDIT_ARCH_X86_64			(EM_X86_64|__AUDIT_ARCH_64BIT|__AUDIT_ARCH_LE)
+ #define __AUDIT_ARCH_64BIT			0x80000000
+ #define __AUDIT_ARCH_LE				0x40000000
+@@ -172,10 +513,61 @@ GLOBAL(entry_SYSCALL_64_after_swapgs)
+ 	pushq	%r9				/* pt_regs->r9 */
+ 	pushq	%r10				/* pt_regs->r10 */
+ 	pushq	%r11				/* pt_regs->r11 */
++	// pushq	%rbx
++	// pushq	%rbp
++	// pushq	%r12
++	// pushq	%r13
++	// pushq	%r14
++	// pushq	%r15
+ 	sub	$(6*8), %rsp			/* pt_regs->bp, bx, r12-15 not saved */
++	SAVE_EXTRA_REGS
++	// movabsq $0x4141414141414141, %rdi
++	// movabsq $0x4141414141414141, %rsi
++	// movabsq $0x4141414141414141, %rdx
++	// movabsq $0x4141414141414141, %rcx // clobbered during syscall
++	// movabsq $0x4141414141414141, %rax
++	// movabsq $0x4141414141414141, %r8
++	// movabsq $0x4141414141414141, %r9
++	// movabsq $0x4141414141414141, %r10
++	// movabsq $0x4141414141414141, %r11 // clobbered during syscall
++	mov    arg_map(, %rax, 4), %ebx
++
++	cmp $6, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %r9
++	
++	cmp $5, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %r8
++
++	cmp $4, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %r10
++
++	cmp $3, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %rdx
++
++	cmp $2, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %rsi
++
++	cmp $1, %ebx
++	jz gogogo
++	movabsq $0x4141414141414141, %rdi
++	
++gogogo:
++	movabsq $0x4141414141414141, %rbx
++	movabsq $0x4141414141414141, %rbp
++	movabsq $0x4141414141414141, %r12
++	movabsq $0x4141414141414141, %r13
++	movabsq $0x4141414141414141, %r14
++	movabsq $0x4141414141414141, %r15
++	
+ 
+ 	testl	$_TIF_WORK_SYSCALL_ENTRY, ASM_THREAD_INFO(TI_flags, %rsp, SIZEOF_PTREGS)
+ 	jnz	tracesys
++
+ entry_SYSCALL_64_fastpath:
+ #if __SYSCALL_MASK == ~0
+ 	cmpq	$NR_syscalls, %rax
+@@ -193,8 +585,15 @@ entry_SYSCALL_64_fastpath:
+ #else
+ 	call	*sys_call_table(, %rax, 8)
+ #endif
++	pushq	%rax
++	movq	%rsp, %rdi
++	call	inspect_stack_64	/* check taint on stack after each syscall execution */
++	movq	%rsp, %rdi
++	call	clear_stack_64		/* clear stack after the syscall execution */
++	popq    %rax
+ 
+ 	movq	%rax, RAX(%rsp)
++
+ 1:
+ /*
+  * Syscall return path ending with SYSRET (fast path).
+@@ -223,6 +622,9 @@ entry_SYSCALL_64_fastpath:
+ 	movq	RIP(%rsp), %rcx
+ 	movq	EFLAGS(%rsp), %r11
+ 	RESTORE_C_REGS_EXCEPT_RCX_R11
++	RESTORE_EXTRA_REGS
++
++
+ 	/*
+ 	 * This opens a window where we have a user CR3, but are
+ 	 * running in the kernel.  This makes using the CS
+@@ -266,7 +668,7 @@ tracesys:
+ 	jmp	entry_SYSCALL_64_fastpath	/* and return to the fast path */
+ 
+ tracesys_phase2:
+-	SAVE_EXTRA_REGS
++	// SAVE_EXTRA_REGS
+ 	movq	%rsp, %rdi
+ 	movl	$AUDIT_ARCH_X86_64, %esi
+ 	movq	%rax, %rdx
+@@ -304,7 +706,7 @@ tracesys_phase2:
+  * Has correct iret frame.
+  */
+ GLOBAL(int_ret_from_sys_call)
+-	SAVE_EXTRA_REGS
++	// SAVE_EXTRA_REGS
+ 	movq	%rsp, %rdi
+ 	call	syscall_return_slowpath	/* returns with IRQs disabled */
+ 	RESTORE_EXTRA_REGS
+@@ -375,6 +777,7 @@ GLOBAL(int_ret_from_sys_call)
+ syscall_return_via_sysret:
+ 	/* rcx and r11 are already restored (see code above) */
+ 	RESTORE_C_REGS_EXCEPT_RCX_R11
++	RESTORE_EXTRA_REGS
+ 	/*
+ 	 * This opens a window where we have a user CR3, but are
+ 	 * running in the kernel.  This makes using the CS
+@@ -402,7 +805,7 @@ END(entry_SYSCALL_64)
+ 
+ 	.macro FORK_LIKE func
+ ENTRY(stub_\func)
+-	SAVE_EXTRA_REGS 8
++	// SAVE_EXTRA_REGS 8
+ 	jmp	sys_\func
+ END(stub_\func)
+ 	.endm
+@@ -460,7 +863,7 @@ ENTRY(stub_rt_sigreturn)
+ 	 * To make sure RESTORE_EXTRA_REGS doesn't restore garbage on error,
+ 	 * we SAVE_EXTRA_REGS here.
+ 	 */
+-	SAVE_EXTRA_REGS 8
++	// SAVE_EXTRA_REGS 8
+ 	call	sys_rt_sigreturn
+ return_from_stub:
+ 	addq	$8, %rsp
+@@ -471,7 +874,7 @@ END(stub_rt_sigreturn)
+ 
+ #ifdef CONFIG_X86_X32_ABI
+ ENTRY(stub_x32_rt_sigreturn)
+-	SAVE_EXTRA_REGS 8
++	// SAVE_EXTRA_REGS 8
+ 	call	sys32_x32_rt_sigreturn
+ 	jmp	return_from_stub
+ END(stub_x32_rt_sigreturn)

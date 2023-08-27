@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# specify kernel path
+if [ -z $1 ];
+then
+	echo "kernel path must be specified"
+	exit
+else
+	KERNEL=$1
+fi
+
+# init ssh port
+if [ -z $2 ];
+then
+	SSH_PORT=10069
+else
+	SSH_PORT=$2
+fi
+
+# init gdb port
+if [ -z $3 ];
+then
+	GDB_PORT=8333
+else
+	GDB_PORT=$3
+fi
+
+# init monitor port
+if [ -z $4 ];
+then
+	MONITOR_PORT=45454
+else
+	MONITOR_PORT=$4
+fi
+
+# whether to stop at start
+if [ -z $5 ];
+then
+	# if not, we can enable kvm to speed things up
+	FLAGS='-enable-kvm -cpu host,-smap,-smep'
+else
+	# if yes, we need to use qemu itself for debugging
+	FLAGS='-cpu kvm64 -S'
+fi
+
+# resolve image path
+list=($(dirname $0)/img/*.img)
+IMAGE=${list[0]}
+
+/home/kylebot/src/qemu/build/qemu-system-x86_64 \
+  -snapshot \
+  -kernel $KERNEL \
+  -hda $IMAGE \
+  -append "console=ttyS0 root=/dev/sda debug earlyprintk=serial panic=1000 oops=panic nokaslr nosmap nosmep selinux=0 nopti tsc=unstable net.ifnames=0" \
+  -net nic -net user,hostfwd=tcp::${SSH_PORT}-:22 \
+  -smp cores=2,threads=2 \
+  -nographic \
+  -m 2G \
+  -monitor tcp:127.0.0.1:${MONITOR_PORT},server,nowait \
+  -gdb tcp::$GDB_PORT \
+  $FLAGS \
+  2>&1

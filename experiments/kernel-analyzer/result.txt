@@ -1,0 +1,427 @@
+Total 2566 file(s)
+./analyzer: error loading file '/home/zip/ssd/upstream/src/linux-5.16.10/kernel/time/timeconst.bc'
+  %11 = getelementptr inbounds %struct.file_operations, %struct.file_operations* %10, i32 0, i32 1, !dbg !6118
+debug mode in getStructId()
+struct id: struct.file_operations,1
+Found copyin
+Found copyin
+Found copyin
+Found copyin
+Data on Stack Funcs:
+cdrom_ioctl_multisession	at drivers/cdrom/cdrom.c:2262, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+get_info	at net/ipv4/netfilter/ip_tables.c:957, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+io_register_iowq_aff	at fs/io_uring.c:10791, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+__do_compat_sys_kexec_load	at kernel/kexec.c:282, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+get_info	at net/ipv6/netfilter/ip6_tables.c:973, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+addrconf_del_ifaddr	at net/ipv6/addrconf.c:3076, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+seccomp_prepare_user_filter	at kernel/seccomp.c:698, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+proc_ioctl_compat	at drivers/usb/core/devio.c:2384, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+get_user_stack_nth	at kernel/trace/trace_uprobe.c:117, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+con_set_trans_old	at drivers/tty/vt/consolemap.c:328, Function copy_from_user, copy size 256;		 This Function does not contain indirect calls
+md_ioctl	at drivers/md/md.c:7657, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+dev_ifconf	at net/core/dev_ioctl.c:55, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+vt_k_ioctl	at drivers/tty/vt/vt_ioctl.c:470, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+compat_ioctl_preallocate	at fs/ioctl.c:307, Function copy_from_user, copy size 44;		 This Function does not contain indirect calls
+seccomp_get_action_avail	at kernel/seccomp.c:1910, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+compat_drm_mode_addfb2	at drivers/gpu/drm/drm_ioc32.c:895, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+__io_sqe_files_update	at fs/io_uring.c:8582, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+evdev_do_ioctl	at drivers/input/evdev.c:1113, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+getxattr	at fs/xattr.c:652, Function strncpy_from_user, copy size 256;		 This Function contains indirect calls
+proc_submiturb	at drivers/usb/core/devio.c:1969, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+arp_ioctl	at net/ipv4/arp.c:1192, Function copy_from_user, copy size 68;		 This Function does not contain indirect calls
+rtc_dev_ioctl	at drivers/rtc/dev.c:425, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+write_ldt	at arch/x86/kernel/ldt.c:589, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+snapshot_set_swap_area	at kernel/power/user.c:222, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+query_perf_config_data	at drivers/gpu/drm/i915/i915_query.c:237, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+cdrom_ioctl_timed_media_change	at drivers/cdrom/cdrom.c:2373, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+cdrom_ioctl_read_tochdr	at drivers/cdrom/cdrom.c:2642, Function copy_from_user, copy size 2;		 This Function contains indirect calls
+__ext4_ioctl	at fs/ext4/ioctl.c:1116, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+__do_sys_epoll_ctl	at fs/eventpoll.c:2182, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+mmc_ioctl_cdrom_volume	at drivers/cdrom/cdrom.c:3136, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+ethtool_get_tunable	at net/ethtool/ioctl.c:2424, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+queue_state_write	at block/blk-mq-debugfs.c:165, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+get_urb32	at drivers/usb/core/devio.c:2153, Function copy_from_user, copy size 44;		 This Function contains indirect calls
+__do_sys_prlimit64	at kernel/sys.c:1655, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+input_event_from_user	at drivers/input/input-compat.c:20, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+ioctl_preallocate	at fs/ioctl.c:278, Function copy_from_user, copy size 48;		 This Function does not contain indirect calls
+ext4_ioctl_checkpoint	at fs/ext4/ioctl.c:810, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+__io_sqe_files_update	at fs/io_uring.c:8583, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+evdev_handle_set_keycode_v2	at drivers/input/evdev.c:864, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+hiddev_ioctl	at drivers/hid/usbhid/hiddev.c:714, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+compat_ip_get_mcast_msfilter	at net/ipv4/ip_sockglue.c:1503, Function copy_from_user, copy size 140;		 This Function does not contain indirect calls
+quota_setquota	at fs/quota/quota.c:297, Function copy_from_user, copy size 68;		 This Function contains indirect calls
+mon_bin_ioctl	at drivers/usb/mon/mon_bin.c:1087, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+arch_uretprobe_hijack_return_addr	at arch/x86/kernel/uprobes.c:1069, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+snd_ctl_elem_list_user	at sound/core/control.c:791, Function copy_from_user, copy size 80;		 This Function does not contain indirect calls
+ethtool_set_eee	at net/ethtool/ioctl.c:1494, Function copy_from_user, copy size 40;		 This Function contains indirect calls
+mmc_ioctl_cdrom_play_blk	at drivers/cdrom/cdrom.c:3110, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+do_ipv6_getsockopt	at net/ipv6/ipv6_sockglue.c:1399, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+msr_ioctl	at arch/x86/kernel/msr.c:178, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+write_flush	at net/sunrpc/cache.c:1503, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+ethtool_get_any_eeprom	at net/ethtool/ioctl.c:1536, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+md_ioctl	at drivers/md/md.c:7699, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+rtc_dev_ioctl	at drivers/rtc/dev.c:372, Function copy_from_user, copy size 40;		 This Function contains indirect calls
+__copy_msghdr_from_user	at net/socket.c:2294, Function copy_from_user, copy size 56;		 This Function does not contain indirect calls
+create_setparam	at drivers/gpu/drm/i915/gem/i915_gem_context.c:2096, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+snd_timer_user_gparams	at sound/core/timer.c:1712, Function copy_from_user, copy size 72;		 This Function contains indirect calls
+ext_set_placements	at drivers/gpu/drm/i915/gem/i915_gem_create.c:365, Function copy_from_user, copy size 48;		 This Function does not contain indirect calls
+__get_compat_msghdr	at net/compat.c:44, Function copy_from_user, copy size 28;		 This Function does not contain indirect calls
+mmc_ioctl_cdrom_read_data	at drivers/cdrom/cdrom.c:2971, Function copy_from_user, copy size 6;		 This Function contains indirect calls
+__do_sys_copy_file_range	at fs/read_write.c:1555, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+vt_ioctl	at drivers/tty/vt/vt_ioctl.c:769, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__do_sys_mq_open	at ipc/mqueue.c:934, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+snd_ctl_elem_unlock	at sound/core/control.c:1236, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+ethtool_rxnfc_copy_from_compat	at net/ethtool/ioctl.c:853, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+____sys_sendmsg	at net/socket.c:2390, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+net_hwtstamp_validate	at net/core/dev_ioctl.c:192, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+ethtool_set_per_queue_coalesce	at net/ethtool/ioctl.c:2533, Function copy_from_user, copy size 92;		 This Function contains indirect calls
+proc_disconnectsignal	at drivers/usb/core/devio.c:2261, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+wm_latency_write	at drivers/gpu/drm/i915/display/intel_display_debugfs.c:1731, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+__do_sys_sigaltstack	at kernel/signal.c:4222, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+snd_pcm_xferi_frames_ioctl	at sound/core/pcm_native.c:3147, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+__do_sys_mq_getsetattr	at ipc/mqueue.c:1495, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+__do_compat_sys_io_pgetevents	at fs/aio.c:2339, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+pps_cdev_ioctl	at drivers/pps/pps.c:123, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+evdev_do_ioctl	at drivers/input/evdev.c:1101, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+uart_set_rs485_config	at drivers/tty/serial/serial_core.c:1298, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+mon_bin_compat_ioctl	at drivers/usb/mon/mon_bin.c:1166, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+__io_sqe_buffers_update	at fs/io_uring.c:9257, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+quota_disable	at fs/quota/quota.c:328, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+ethtool_set_value_void	at net/ethtool/ioctl.c:2178, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+ethtool_set_wol	at net/ethtool/ioctl.c:1452, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+ext_set_protected	at drivers/gpu/drm/i915/gem/i915_gem_create.c:376, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+set_user_sigmask	at kernel/signal.c:3097, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+inet_ioctl	at net/ipv4/af_inet.c:937, Function copy_from_user, copy size 120;		 This Function contains indirect calls
+bsg_sg_io	at block/bsg.c:62, Function copy_from_user, copy size 160;		 This Function contains indirect calls
+drm_ioctl	at drivers/gpu/drm/drm_ioctl.c:877, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+set_proto_ctx_engines_balance	at drivers/gpu/drm/i915/gem/i915_gem_context.c:432, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+snd_ctl_tlv_ioctl	at sound/core/control.c:1728, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+set_proto_ctx_engines_bond	at drivers/gpu/drm/i915/gem/i915_gem_context.c:518, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+snd_ctl_elem_add_user	at sound/core/control.c:1612, Function copy_from_user, copy size 272;		 This Function contains indirect calls
+ethtool_set_coalesce	at net/ethtool/ioctl.c:1730, Function copy_from_user, copy size 92;		 This Function contains indirect calls
+get_old_itimerval32	at kernel/time/itimer.c:363, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+f_setown_ex	at fs/fcntl.c:174, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+evdev_handle_get_keycode_v2	at drivers/input/evdev.c:830, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+snd_pcm_sync_ptr	at sound/core/pcm_native.c:2978, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+__do_compat_sys_ia32_mmap	at arch/x86/kernel/sys_ia32.c:227, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+__do_sys_io_pgetevents	at fs/aio.c:2237, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+snd_pcm_channel_info_user	at sound/core/pcm_native.c:1117, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+set_proto_ctx_sseu	at drivers/gpu/drm/i915/gem/i915_gem_context.c:797, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+kcmp_epoll_target	at kernel/kcmp.c:106, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+snd_timer_user_tselect	at sound/core/timer.c:1766, Function copy_from_user, copy size 52;		 This Function contains indirect calls
+removexattr	at fs/xattr.c:815, Function strncpy_from_user, copy size 256;		 This Function contains indirect calls
+io_submit_one	at fs/aio.c:1974, Function copy_from_user, copy size 64;		 This Function contains indirect calls
+comm_write	at fs/proc/base.c:1674, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+compat_unimap_ioctl	at drivers/tty/vt/vt_ioctl.c:1041, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+acpi_system_write_wakeup_device	at drivers/acpi/proc.c:101, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+hiddev_ioctl	at drivers/hid/usbhid/hiddev.c:695, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+proc_getdriver	at drivers/usb/core/devio.c:1415, Function copy_from_user, copy size 260;		 This Function contains indirect calls
+ethtool_set_fecparam	at net/ethtool/ioctl.c:2703, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+semctl_main	at ipc/sem.c:1495, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+i915_hpd_short_storm_ctl_write	at drivers/gpu/drm/i915/display/intel_display_debugfs.c:1940, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+compat_drm_getclient	at drivers/gpu/drm/drm_ioc32.c:269, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+compat_i915_getparam	at drivers/gpu/drm/i915/i915_ioc32.c:52, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+rtc_dev_ioctl	at drivers/rtc/dev.c:388, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+__do_sys_adjtimex	at kernel/time/time.c:278, Function copy_from_user, copy size 208;		 This Function does not contain indirect calls
+do_pages_stat	at mm/migrate.c:1937, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+__do_sys_sethostname	at kernel/sys.c:1351, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+io_register_files_update	at fs/io_uring.c:10729, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+rtc_dev_ioctl	at drivers/rtc/dev.c:271, Function copy_from_user, copy size 36;		 This Function contains indirect calls
+vt_k_ioctl	at drivers/tty/vt/vt_ioctl.c:365, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+snd_seq_ioctl	at sound/core/seq/seq_clientmgr.c:2168, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+ptp_ioctl	at drivers/ptp/ptp_chardev.c:393, Function copy_from_user, copy size 96;		 This Function contains indirect calls
+quota_rmxquota	at fs/quota/quota.c:759, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+scsi_get_cdrom_generic_arg	at drivers/scsi/scsi_ioctl.c:757, Function copy_from_user, copy size 44;		 This Function does not contain indirect calls
+futex_parse_waitv	at kernel/futex/syscalls.c:221, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+ipmr_compat_ioctl	at net/ipv4/ipmr.c:1677, Function copy_from_user, copy size 20;		 This Function does not contain indirect calls
+__do_sys_rt_sigprocmask	at kernel/signal.c:3148, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+ethtool_set_dump	at net/ethtool/ioctl.c:2218, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+__ext4_ioctl	at fs/ext4/ioctl.c:958, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+inet6_ioctl	at net/ipv6/af_inet6.c:565, Function copy_from_user, copy size 80;		 This Function contains indirect calls
+snd_hwdep_dsp_load_user	at sound/core/hwdep.c:230, Function copy_from_user, copy size 96;		 This Function contains indirect calls
+__ext4_ioctl	at fs/ext4/ioctl.c:1064, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__blk_trace_setup	at kernel/trace/blktrace.c:585, Function copy_from_user, copy size 72;		 This Function does not contain indirect calls
+ethtool_set_one_feature	at net/ethtool/ioctl.c:270, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__do_compat_sys_old_select	at fs/select.c:1306, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+quota_setquota	at fs/quota/quota.c:301, Function copy_from_user, copy size 72;		 This Function contains indirect calls
+fcntl_rw_hint	at fs/fcntl.c:300, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+proc_disconnect_claim	at drivers/usb/core/devio.c:2440, Function copy_from_user, copy size 264;		 This Function contains indirect calls
+io_register_rsrc_update	at fs/io_uring.c:10741, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+get_entries	at net/ipv4/netfilter/ip_tables.c:1014, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+cdrom_ioctl_play_trkind	at drivers/cdrom/cdrom.c:2712, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+__do_sys_signalfd	at fs/signalfd.c:320, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__do_compat_sys_socketcall	at net/compat.c:437, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+addrconf_add_ifaddr	at net/ipv6/addrconf.c:3056, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+compat_drm_mode_addfb2	at drivers/gpu/drm/drm_ioc32.c:891, Function copy_from_user, copy size 68;		 This Function does not contain indirect calls
+ethtool_get_module_info	at net/ethtool/ioctl.c:2348, Function copy_from_user, copy size 44;		 This Function contains indirect calls
+blkdev_pr_release	at block/ioctl.c:301, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+ext4_ioc_getfsmap	at fs/ext4/ioctl.c:634, Function copy_from_user, copy size 192;		 This Function does not contain indirect calls
+snd_timer_user_gstatus	at sound/core/timer.c:1725, Function copy_from_user, copy size 80;		 This Function contains indirect calls
+__get_old_timespec32	at kernel/time/time.c:822, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__do_sys_rt_sigtimedwait_time32	at kernel/signal.c:3664, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+get_old_timex32	at kernel/time/time.c:291, Function copy_from_user, copy size 128;		 This Function does not contain indirect calls
+msr_ioctl	at arch/x86/kernel/msr.c:162, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+vga_arb_write	at drivers/gpu/vga/vgaarb.c:1066, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+blkdev_pr_register	at block/ioctl.c:265, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+loop_set_status64	at drivers/block/loop.c:1404, Function copy_from_user, copy size 232;		 This Function does not contain indirect calls
+evdev_do_ioctl	at drivers/input/evdev.c:1123, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+evdev_do_ioctl	at drivers/input/evdev.c:1229, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ethtool_set_tunable	at net/ethtool/ioctl.c:2455, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+ethtool_set_eeprom	at net/ethtool/ioctl.c:1605, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+restore_altstack	at kernel/signal.c:4235, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+do_ip_getsockopt	at net/ipv4/ip_sockglue.c:1676, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+compat_ksys_ipc	at ipc/syscall.c:170, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+handle_to_path	at fs/fhandle.c:183, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+ethtool_get_rxfh_indir	at net/ethtool/ioctl.c:1078, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+parse_timeline_fences	at drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2872, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+write_pool	at drivers/char/random.c:1894, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+get_compat_mq_attr	at ipc/mqueue.c:1525, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+mmc_ioctl_dvd_auth	at drivers/cdrom/cdrom.c:3259, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+write_gssp	at net/sunrpc/auth_gss/svcauth_gss.c:1443, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ethtool_set_link_ksettings	at net/ethtool/ioctl.c:603, Function copy_from_user, copy size 48;		 This Function contains indirect calls
+inet_compat_routing_ioctl	at net/ipv4/af_inet.c:989, Function copy_from_user, copy size 48;		 This Function does not contain indirect calls
+i915_query_ioctl	at drivers/gpu/drm/i915/i915_query.c:506, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+compat_ipv6_get_msfilter	at net/ipv6/ipv6_sockglue.c:1101, Function copy_from_user, copy size 140;		 This Function contains indirect calls
+do_fcntl	at fs/fcntl.c:377, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+do_ip6t_get_ctl	at net/ipv6/netfilter/ip6_tables.c:1684, Function copy_from_user, copy size 30;		 This Function does not contain indirect calls
+ethtool_get_regs	at net/ethtool/ioctl.c:1376, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+keyctl_pkey_params_get_2	at security/keys/keyctl_pkey.c:125, Function copy_from_user, copy size 40;		 This Function contains indirect calls
+__do_compat_sys_io_pgetevents_time64	at fs/aio.c:2374, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+__do_sys_socketcall	at net/socket.c:2920, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+set_proto_ctx_engines_bond	at drivers/gpu/drm/i915/gem/i915_gem_context.c:542, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+snd_timer_user_gparams_compat	at sound/core/timer_compat.c:39, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+get_sg_io_hdr	at drivers/scsi/scsi_ioctl.c:696, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+sg_write	at drivers/scsi/sg.c:692, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+dma_buf_ioctl	at drivers/dma-buf/dma-buf.c:351, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+mmc_ioctl_cdrom_read_audio	at drivers/cdrom/cdrom.c:3037, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+__do_sys_timer_create	at kernel/time/posix-timers.c:584, Function copy_from_user, copy size 64;		 This Function contains indirect calls
+snd_pcm_sw_params_user	at sound/core/pcm_native.c:921, Function copy_from_user, copy size 136;		 This Function contains indirect calls
+__ext4_ioctl	at fs/ext4/ioctl.c:1003, Function copy_from_user, copy size 48;		 This Function does not contain indirect calls
+compat_drm_getunique	at drivers/gpu/drm/drm_ioc32.c:139, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+io_register_rsrc	at fs/io_uring.c:10758, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+compat_get_entries	at net/ipv6/netfilter/ip6_tables.c:1593, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+cdrom_ioctl_get_subchnl	at drivers/cdrom/cdrom.c:2612, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+io_get_ext_arg	at fs/io_uring.c:10027, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+blkdev_pr_reserve	at block/ioctl.c:283, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+idmap_pipe_downcall	at fs/nfs/nfs4idmap.c:692, Function copy_from_user, copy size 140;		 This Function does not contain indirect calls
+__do_sys_settimeofday	at kernel/time/time.c:216, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+__copy_siginfo_from_user32	at kernel/signal.c:3535, Function copy_from_user, copy size 128;		 This Function contains indirect calls
+inet6_compat_routing_ioctl	at net/ipv6/af_inet6.c:604, Function copy_from_user, copy size 48;		 This Function does not contain indirect calls
+post_copy_siginfo_from_user	at kernel/signal.c:3340, Function copy_from_user, copy size 80;		 This Function contains indirect calls
+ptrace_writedata	at kernel/ptrace.c:639, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ptp_ioctl	at drivers/ptp/ptp_chardev.c:361, Function copy_from_user, copy size 96;		 This Function contains indirect calls
+loop_set_status_old	at drivers/block/loop.c:1393, Function copy_from_user, copy size 168;		 This Function does not contain indirect calls
+con_font_default	at drivers/tty/vt/vt.c:4684, Function strncpy_from_user, copy size 31;		 This Function contains indirect calls
+ethtool_set_ringparam	at net/ethtool/ioctl.c:1765, Function copy_from_user, copy size 36;		 This Function contains indirect calls
+ethtool_reset	at net/ethtool/ioctl.c:1416, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+do_set_thread_area	at arch/x86/kernel/tls.c:121, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+mtrr_ioctl	at arch/x86/kernel/cpu/mtrr/if.c:181, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+snd_timer_user_params	at sound/core/timer.c:1840, Function copy_from_user, copy size 80;		 This Function contains indirect calls
+compat_get_entries	at net/ipv4/netfilter/ip_tables.c:1584, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+dev_ifconf	at net/core/dev_ioctl.c:46, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+snd_seq_write	at sound/core/seq/seq_clientmgr.c:1055, Function copy_from_user, copy size 28;		 This Function contains indirect calls
+io_sqe_files_register	at fs/io_uring.c:8355, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+hiddev_ioctl	at drivers/hid/usbhid/hiddev.c:801, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+mmc_ioctl_cdrom_subchannel	at drivers/cdrom/cdrom.c:3064, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+get_compat_flock	at fs/fcntl.c:544, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+xhci_port_write	at drivers/usb/host/xhci-debugfs.c:372, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+setxattr	at fs/xattr.c:554, Function strncpy_from_user, copy size 256;		 This Function contains indirect calls
+ethtool_set_value	at net/ethtool/ioctl.c:2193, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+get_timespec64	at kernel/time/time.c:787, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+ip_tunnel_siocdevprivate	at net/ipv4/ip_tunnel.c:967, Function copy_from_user, copy size 52;		 This Function contains indirect calls
+mmc_ioctl_cdrom_read_audio	at drivers/cdrom/cdrom.c:3025, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+tracing_clock_write	at kernel/trace/trace.c:7241, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+con_set_cmap	at drivers/tty/vt/vt.c:4521, Function copy_from_user, copy size 48;		 This Function contains indirect calls
+ethtool_get_phy_stats	at net/ethtool/ioctl.c:2101, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+mtrr_ioctl	at arch/x86/kernel/cpu/mtrr/if.c:176, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+pps_cdev_compat_ioctl	at drivers/pps/pps.c:264, Function copy_from_user, copy size 60;		 This Function does not contain indirect calls
+sel_loadlut	at drivers/tty/vt/selection.c:121, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+__do_sys_capset	at kernel/capability.c:246, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+vt_resizex	at drivers/tty/vt/vt_ioctl.c:673, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+proc_drop_privileges	at drivers/usb/core/devio.c:2513, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+hiddev_ioctl	at drivers/hid/usbhid/hiddev.c:749, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+get_phy_tunable	at net/ethtool/ioctl.c:2616, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+snd_ctl_elem_remove	at sound/core/control.c:1630, Function copy_from_user, copy size 64;		 This Function contains indirect calls
+packet_getsockopt	at net/packet/af_packet.c:4059, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+copy_fsxattr_from_user	at fs/ioctl.c:570, Function copy_from_user, copy size 28;		 This Function does not contain indirect calls
+cdrom_ioctl_read_tocentry	at drivers/cdrom/cdrom.c:2680, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+ethtool_set_pauseparam	at net/ethtool/ioctl.c:1876, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+ethtool_get_stats	at net/ethtool/ioctl.c:2051, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+io_copy_iov	at fs/io_uring.c:8968, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+__do_compat_sys_settimeofday	at kernel/time/time.c:260, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+do_sys_name_to_handle	at fs/fhandle.c:34, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+check_version	at drivers/md/dm-ioctl.c:1804, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+tracing_set_trace_write	at kernel/trace/trace.c:6430, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+restore_sigcontext	at arch/x86/kernel/signal.c:93, Function copy_from_user, copy size 192;		 This Function does not contain indirect calls
+__do_sys_rt_sigtimedwait	at kernel/signal.c:3632, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+blkdev_pr_clear	at block/ioctl.c:337, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+nfs4_parse_monolithic	at fs/nfs/fs_context.c:1225, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+efivarfs_file_write	at fs/efivarfs/file.c:29, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+loop_info64_from_compat	at drivers/block/loop.c:1618, Function copy_from_user, copy size 136;		 This Function does not contain indirect calls
+eventfd_write	at fs/eventfd.c:275, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+evdev_handle_get_keycode	at drivers/input/evdev.c:812, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+ip_get_mcast_msfilter	at net/ipv4/ip_sockglue.c:1476, Function copy_from_user, copy size 144;		 This Function contains indirect calls
+__do_sys_clock_adjtime	at kernel/time/posix-timers.c:1118, Function copy_from_user, copy size 208;		 This Function contains indirect calls
+ioctl_file_clone_range	at fs/ioctl.c:260, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+sync_file_ioctl_merge	at drivers/dma-buf/sync_file.c:334, Function copy_from_user, copy size 48;		 This Function contains indirect calls
+snd_timer_user_next_device	at sound/core/timer.c:1555, Function copy_from_user, copy size 20;		 This Function contains indirect calls
+seccomp_notify_id_valid	at kernel/seccomp.c:1548, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+blk_ioctl_zeroout	at block/ioctl.c:163, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+io_register_iowq_max_workers	at fs/io_uring.c:10821, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+iommu_uapi_cache_invalidate	at drivers/iommu/iommu.c:2108, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+mon_bin_compat_ioctl	at drivers/usb/mon/mon_bin.c:1147, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+lo_ioctl	at drivers/block/loop.c:1554, Function copy_from_user, copy size 304;		 This Function contains indirect calls
+sync_file_ioctl_fence_info	at drivers/dma-buf/sync_file.c:407, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+sg_write	at drivers/scsi/sg.c:632, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+do_ipt_get_ctl	at net/ipv4/netfilter/ip_tables.c:1675, Function copy_from_user, copy size 30;		 This Function does not contain indirect calls
+e1000e_hwtstamp_set	at drivers/net/ethernet/intel/e1000e/netdev.c:6193, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+tty_tiocsserial	at drivers/tty/tty_io.c:2646, Function copy_from_user, copy size 72;		 This Function contains indirect calls
+snd_pcm_ioctl_sync_ptr_buggy	at sound/core/pcm_compat.c:509, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+ethtool_set_per_queue	at net/ethtool/ioctl.c:2568, Function copy_from_user, copy size 520;		 This Function contains indirect calls
+blk_ioctl_discard	at block/ioctl.c:125, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+prctl_set_auxv	at kernel/sys.c:2068, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+proc_bulk	at drivers/usb/core/devio.c:1349, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+rtentry_to_fib_config	at net/ipv4/fib_frontend.c:529, Function copy_from_user, copy size 15;		 This Function does not contain indirect calls
+init_pkru_write_file	at arch/x86/mm/pkeys.c:145, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ipv6_get_msfilter	at net/ipv6/ipv6_sockglue.c:1068, Function copy_from_user, copy size 144;		 This Function contains indirect calls
+snd_ctl_elem_list_compat	at sound/core/control_compat.c:30, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+compat_drm_wait_vblank	at drivers/gpu/drm/drm_ioc32.c:849, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+do_unimap_ioctl	at drivers/tty/vt/vt_ioctl.c:494, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+kern_select	at fs/select.c:711, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+__do_sys_sigprocmask	at kernel/signal.c:4362, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+__do_sys_prctl	at kernel/sys.c:2325, Function strncpy_from_user, copy size 15;		 This Function does not contain indirect calls
+ipmr_compat_ioctl	at net/ipv4/ipmr.c:1698, Function copy_from_user, copy size 20;		 This Function does not contain indirect calls
+ptrace_request	at kernel/ptrace.c:1104, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+do_tcp_getsockopt	at net/ipv4/tcp.c:4185, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+query_perf_config_data	at drivers/gpu/drm/i915/i915_query.c:259, Function copy_from_user, copy size 72;		 This Function does not contain indirect calls
+__do_compat_sys_sendfile64	at fs/read_write.c:1341, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+read_properties_unlocked	at drivers/gpu/drm/i915/i915_perf.c:3703, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+__do_sys_rt_sigaction	at kernel/signal.c:4413, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+pps_cdev_ioctl	at drivers/pps/pps.c:181, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+msr_write	at arch/x86/kernel/msr.c:131, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+addrconf_set_dstaddr	at net/ipv6/addrconf.c:2877, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+i915_hpd_storm_ctl_write	at drivers/gpu/drm/i915/display/intel_display_debugfs.c:1859, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+quota_setxquota	at fs/quota/quota.c:631, Function copy_from_user, copy size 112;		 This Function contains indirect calls
+copy_dev_ioctl	at fs/autofs/dev-ioctl.c:86, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+seccomp_notify_send	at kernel/seccomp.c:1504, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+proc_setintf	at drivers/usb/core/devio.c:1506, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+tracing_trace_options_write	at kernel/trace/trace.c:5391, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+__do_sys_signalfd4	at fs/signalfd.c:308, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+ipmr_ioctl	at net/ipv4/ipmr.c:1602, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+ethtool_phys_id	at net/ethtool/ioctl.c:1993, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+set_selection_user	at drivers/tty/vt/selection.c:182, Function copy_from_user, copy size 10;		 This Function does not contain indirect calls
+rtc_dev_ioctl	at drivers/rtc/dev.c:334, Function copy_from_user, copy size 36;		 This Function contains indirect calls
+proc_control	at drivers/usb/core/devio.c:1250, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+ethtool_get_link_ksettings	at net/ethtool/ioctl.c:546, Function copy_from_user, copy size 48;		 This Function contains indirect calls
+get_entries	at net/ipv6/netfilter/ip6_tables.c:1030, Function copy_from_user, copy size 40;		 This Function does not contain indirect calls
+_perf_ioctl	at kernel/events/core.c:5708, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+hiddev_ioctl	at drivers/hid/usbhid/hiddev.c:733, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+write_profile	at kernel/profile.c:509, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+ethtool_set_features	at net/ethtool/ioctl.c:129, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+connector_write	at drivers/gpu/drm/drm_debugfs.c:310, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+snd_hwdep_dsp_load_compat	at sound/core/hwdep_compat.c:25, Function copy_from_user, copy size 68;		 This Function contains indirect calls
+set_proto_ctx_engines	at drivers/gpu/drm/i915/gem/i915_gem_context.c:739, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+ethtool_get_dump_flag	at net/ethtool/ioctl.c:2234, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+snd_ctl_elem_info_user	at sound/core/control.c:1046, Function copy_from_user, copy size 272;		 This Function contains indirect calls
+io_eventfd_register	at fs/io_uring.c:9301, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+__do_sys_copy_file_range	at fs/read_write.c:1548, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+iommu_uapi_cache_invalidate	at drivers/iommu/iommu.c:2130, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+do_sys_poll	at fs/select.c:996, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+__do_splice	at fs/splice.c:1139, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+ata_cmd_ioctl	at drivers/ata/libata-scsi.c:377, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+set_placements	at drivers/gpu/drm/i915/gem/i915_gem_create.c:301, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+ethtool_get_dump_data	at net/ethtool/ioctl.c:2258, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+snd_ctl_elem_lock	at sound/core/control.c:1208, Function copy_from_user, copy size 64;		 This Function contains indirect calls
+ethtool_set_rxfh_indir	at net/ethtool/ioctl.c:1130, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+__do_sys_sendfile64	at fs/read_write.c:1302, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+set_phy_tunable	at net/ethtool/ioctl.c:2655, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+set_sseu	at drivers/gpu/drm/i915/gem/i915_gem_context.c:1934, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+ipip6_tunnel_get_prl	at net/ipv6/sit.c:313, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+md_ioctl	at drivers/md/md.c:7587, Function copy_from_user, copy size 72;		 This Function contains indirect calls
+__do_sys_mq_notify	at ipc/mqueue.c:1434, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+parse_command	at fs/binfmt_misc.c:485, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+drm_mode_atomic_ioctl	at drivers/gpu/drm/drm_atomic_uapi.c:1426, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+hidraw_get_report	at drivers/hid/hidraw.c:223, Function copy_from_user, copy size 1;		 This Function contains indirect calls
+blkdev_pr_preempt	at block/ioctl.c:319, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+mon_bin_ioctl	at drivers/usb/mon/mon_bin.c:1068, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+mmc_ioctl_cdrom_play_msf	at drivers/cdrom/cdrom.c:3090, Function copy_from_user, copy size 6;		 This Function contains indirect calls
+get_disk_info	at drivers/md/md.c:6660, Function copy_from_user, copy size 20;		 This Function does not contain indirect calls
+ipmr_ioctl	at net/ipv4/ipmr.c:1623, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+ioctl_fiemap	at fs/ioctl.c:209, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+seccomp_prepare_user_filter	at kernel/seccomp.c:704, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+compat_blk_trace_setup	at kernel/trace/blktrace.c:623, Function copy_from_user, copy size 64;		 This Function does not contain indirect calls
+ipip6_tunnel_prl_ctl	at net/ipv6/sit.c:468, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+proc_disconnectsignal_compat	at drivers/usb/core/devio.c:2142, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+copy_siginfo_from_user32	at kernel/signal.c:3547, Function copy_from_user, copy size 128;		 This Function contains indirect calls
+snd_seq_dump_var_event	at sound/core/seq/seq_memory.c:83, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+__do_sys_reboot	at kernel/reboot.c:370, Function strncpy_from_user, copy size 255;		 This Function contains indirect calls
+__do_sys_delete_module	at kernel/module.c:922, Function strncpy_from_user, copy size 55;		 This Function contains indirect calls
+tiocswinsz	at drivers/tty/tty_io.c:2388, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+fat_ioctl_fitrim	at fs/fat/file.c:140, Function copy_from_user, copy size 24;		 This Function does not contain indirect calls
+quota_enable	at fs/quota/quota.c:317, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+compat_drm_version	at drivers/gpu/drm/drm_ioc32.c:98, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+do_compat_sigaltstack	at kernel/signal.c:4261, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+do_sched_setscheduler	at kernel/sched/core.c:7582, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+do_fcntl	at fs/fcntl.c:363, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+ethtool_get_perm_addr	at net/ethtool/ioctl.c:2140, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+do_compat_select	at fs/select.c:1273, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+io_uring_setup	at fs/io_uring.c:10534, Function copy_from_user, copy size 120;		 This Function contains indirect calls
+oom_adj_write	at fs/proc/base.c:1164, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+snd_pcm_xfern_frames_ioctl	at sound/core/pcm_native.c:3172, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+vt_do_kdsk_ioctl	at drivers/tty/vt/keyboard.c:2016, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+do_futimesat	at fs/utimes.c:180, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+sg_new_write	at drivers/scsi/sg.c:766, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+vt_event_wait_ioctl	at drivers/tty/vt/vt_ioctl.c:193, Function copy_from_user, copy size 28;		 This Function does not contain indirect calls
+cmsghdr_from_user_compat_to_kern	at net/compat.c:187, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+fcntl_rw_hint	at fs/fcntl.c:316, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+ext4_ioctl_get_es_cache	at fs/ext4/ioctl.c:782, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+ethtool_set_features	at net/ethtool/ioctl.c:136, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+rfkill_fop_write	at net/rfkill/core.c:1254, Function copy_from_user, copy size determined at runtime;		 This Function contains indirect calls
+oom_score_adj_write	at fs/proc/base.c:1224, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ptp_ioctl	at drivers/ptp/ptp_chardev.c:148, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+ethtool_set_rxfh	at net/ethtool/ioctl.c:1275, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+blkpg_do_ioctl	at block/ioctl.c:25, Function copy_from_user, copy size 152;		 This Function does not contain indirect calls
+ptp_ioctl	at drivers/ptp/ptp_chardev.c:189, Function copy_from_user, copy size 56;		 This Function contains indirect calls
+__dev_ethtool	at net/ethtool/ioctl.c:2731, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+ethtool_set_settings	at net/ethtool/ioctl.c:706, Function copy_from_user, copy size 44;		 This Function contains indirect calls
+tlbflush_write_file	at arch/x86/mm/tlb.c:1302, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+cdrom_ioctl_volctrl	at drivers/cdrom/cdrom.c:2729, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+dev_ethtool	at net/ethtool/ioctl.c:3023, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+con_set_trans_new	at drivers/tty/vt/consolemap.c:362, Function copy_from_user, copy size 512;		 This Function does not contain indirect calls
+vt_setactivate	at drivers/tty/vt/vt_ioctl.c:597, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+set_proto_ctx_engines_parallel_submit	at drivers/gpu/drm/i915/gem/i915_gem_context.c:638, Function copy_from_user, copy size 4;		 This Function contains indirect calls
+clear_refs_write	at fs/proc/task_mmu.c:1237, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+__do_sys_rt_sigsuspend	at kernel/signal.c:4632, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+snapshot_set_swap_area	at kernel/power/user.c:215, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+load_link_ksettings_from_user	at net/ethtool/ioctl.c:472, Function copy_from_user, copy size 84;		 This Function contains indirect calls
+__do_compat_sys_setrlimit	at kernel/sys.c:1438, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+cdrom_ioctl_play_msf	at drivers/cdrom/cdrom.c:2697, Function copy_from_user, copy size 6;		 This Function contains indirect calls
+get_compat_flock64	at fs/fcntl.c:554, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+proc_ioctl_default	at drivers/usb/core/devio.c:2373, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+ethtool_self_test	at net/ethtool/ioctl.c:1900, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+__do_sys_setrlimit	at kernel/sys.c:1692, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+ethtool_get_sset_info	at net/ethtool/ioctl.c:782, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+quota_setinfo	at fs/quota/quota.c:152, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+get_itimerval	at kernel/time/itimer.c:317, Function copy_from_user, copy size 32;		 This Function does not contain indirect calls
+__do_sys_setdomainname	at kernel/sys.c:1404, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+do_semtimedop	at ipc/sem.c:2246, Function copy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+proc_control_compat	at drivers/usb/core/devio.c:2116, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+__do_splice	at fs/splice.c:1134, Function copy_from_user, copy size 8;		 This Function contains indirect calls
+get_sseu	at drivers/gpu/drm/i915/gem/i915_gem_context.c:2303, Function copy_from_user, copy size 32;		 This Function contains indirect calls
+tg3_hwtstamp_set	at drivers/net/ethernet/broadcom/tg3.c:13800, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+get_compat_ipc_perm	at ipc/compat.c:54, Function copy_from_user, copy size 16;		 This Function does not contain indirect calls
+cpu_latency_qos_write	at kernel/power/qos.c:384, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+ethtool_get_rxfh	at net/ethtool/ioctl.c:1197, Function copy_from_user, copy size 24;		 This Function contains indirect calls
+vt_do_kbkeycode_ioctl	at drivers/tty/vt/keyboard.c:1895, Function copy_from_user, copy size 8;		 This Function does not contain indirect calls
+evdev_handle_set_keycode	at drivers/input/evdev.c:851, Function copy_from_user, copy size 4;		 This Function does not contain indirect calls
+ia32_restore_sigcontext	at arch/x86/ia32/ia32_signal.c:67, Function copy_from_user, copy size 88;		 This Function does not contain indirect calls
+compat_tty_tiocsserial	at drivers/tty/tty_io.c:2852, Function copy_from_user, copy size 60;		 This Function contains indirect calls
+get_compat_ipc64_perm	at ipc/compat.c:42, Function copy_from_user, copy size 36;		 This Function does not contain indirect calls
+ethtool_set_channels	at net/ethtool/ioctl.c:1810, Function copy_from_user, copy size 36;		 This Function contains indirect calls
+quota_getxstatev	at fs/quota/quota.c:506, Function copy_from_user, copy size 1;		 This Function contains indirect calls
+ethtool_get_strings	at net/ethtool/ioctl.c:1931, Function copy_from_user, copy size 12;		 This Function contains indirect calls
+mtrr_write	at arch/x86/kernel/cpu/mtrr/if.c:107, Function strncpy_from_user, copy size determined at runtime;		 This Function does not contain indirect calls
+ata_task_ioctl	at drivers/ata/libata-scsi.c:482, Function copy_from_user, copy size 7;		 This Function does not contain indirect calls
+pps_cdev_ioctl	at drivers/pps/pps.c:215, Function copy_from_user, copy size 12;		 This Function does not contain indirect calls
+ptrace_peek_siginfo	at kernel/ptrace.c:726, Function copy_from_user, copy size 16;		 This Function contains indirect calls
+uart_set_iso7816_config	at drivers/tty/serial/serial_core.c:1342, Function copy_from_user, copy size 40;		 This Function contains indirect calls

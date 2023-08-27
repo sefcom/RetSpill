@@ -1,0 +1,4 @@
+jinja2
+pwntools
+pyelftools
+monkeyhex

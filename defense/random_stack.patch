@@ -1,0 +1,29 @@
+diff --git a/llvm/lib/CodeGen/StackProtector.cpp b/llvm/lib/CodeGen/StackProtector.cpp
+index ff828f560..139d0eec6 100644
+--- a/llvm/lib/CodeGen/StackProtector.cpp
++++ b/llvm/lib/CodeGen/StackProtector.cpp
+@@ -424,6 +424,24 @@ static bool CreatePrologue(Function *F, Module *M, ReturnInst *RI,
+   Value *GuardSlot = getStackGuard(TLI, M, B, &SupportsSelectionDAGSP);
+   B.CreateCall(Intrinsic::getDeclaration(M, Intrinsic::stackprotector),
+                {GuardSlot, AI});
++
++  for (const BasicBlock &BB : *F) {
++    for (const Instruction &I : BB) {
++      if (const auto *CI = dyn_cast<CallInst>(&I)) {
++        if (CI->isInlineAsm()) {
++          return SupportsSelectionDAGSP;
++        }
++      }
++    }
++  }
++
++  // do a mask, then create a alloca
++  Value *size = B.CreateLShr(
++            B.CreatePtrToInt(GuardSlot, Type::getInt64Ty(RI->getContext())),
++            ConstantInt::get(Type::getInt64Ty(RI->getContext()), 57));
++  // entropy 2^7/8
++  B.CreateAlloca(Type::getInt8Ty(RI->getContext()), size);
++
+   return SupportsSelectionDAGSP;
+ }
+ 

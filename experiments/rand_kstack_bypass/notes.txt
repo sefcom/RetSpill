@@ -1,0 +1,6 @@
+./copy2vm vuln_module/vuln.ko  && ./copy2vm poc
+
+
+then:
+insmod vuln.ko
+chmod 666 /dev/vuln

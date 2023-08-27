@@ -1,0 +1,1 @@
+./copy2vm vuln_module/vuln.ko  && ./copy2vm poc && ./copy2vm run.py

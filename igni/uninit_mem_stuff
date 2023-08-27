@@ -1,0 +1,14 @@
+struct io_uring_params	| 0x78	|	io_uring_setup
+struct space_resv		| 0x30	|	copy_fsxattr_from_user
+XATTR_NAME_MAX			| 0x100 |	setxattr
+0x100					| 0x100 |	reboot syscall
+0x20					| 0x20	|	add_key syscall
+struct __kernel_timex	| 0xd0	|	clock_adjtime syscall
+struct rtentry			| 0x78	|	inet_ioctl
+struct ifreq			| 0x28	|	inet_ioctl
+struct arpreq			| 0x44	|	arp_ioctl
+struct ip_tunnel_parm	| 0x34	|	ip_tunnel_siocdevprivate
+struct arpt_get_entries	| 0x28	|	get_entries (in arp_tables)
+struct in6_rtmsg		| 0x50	|	inet6_ioctl
+struct ip6_tnl_parm2	| 0x4c	|	ip6gre_tunnel_siocdevprivate
+struct tipc_sioc_ln_req	| 0x4c	|	tipc_ioctl

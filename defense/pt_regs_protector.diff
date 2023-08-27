@@ -1,0 +1,38 @@
+diff --git a/arch/x86/entry/common.c b/arch/x86/entry/common.c
+index 6c2826417..980afc1ae 100644
+--- a/arch/x86/entry/common.c
++++ b/arch/x86/entry/common.c
+@@ -72,17 +72,30 @@ static __always_inline bool do_syscall_x32(struct pt_regs *regs, int nr)
+ 
+ __visible noinstr void do_syscall_64(struct pt_regs *regs, int nr)
+ {
++	struct pt_regs *heap_regs = kmalloc(sizeof(*regs), GFP_KERNEL);
++	memcpy(heap_regs, regs, sizeof(*regs));
++	memset(regs, 0, offsetof(struct pt_regs, ip));
++	// regs->r15 = regs->r14 = regs->r13 = regs->r12 = 0;
++	// regs->r8 = regs->r9 = regs->r10 = 0;
++	regs->bp = heap_regs->bp;
++	regs->bx = heap_regs->bx;
++	heap_regs->sp = (unsigned long)(heap_regs) + sizeof(*regs);
++	__this_cpu_write(cpu_tss_rw.x86_tss.sp2, heap_regs->sp);
++
+ 	add_random_kstack_offset();
+-	nr = syscall_enter_from_user_mode(regs, nr);
++	nr = syscall_enter_from_user_mode(heap_regs, nr);
+ 
+ 	instrumentation_begin();
+ 
+-	if (!do_syscall_x64(regs, nr) && !do_syscall_x32(regs, nr) && nr != -1) {
++	if (!do_syscall_x64(heap_regs, nr) && !do_syscall_x32(heap_regs, nr) && nr != -1) {
+ 		/* Invalid system call, but still a system call. */
+-		regs->ax = __x64_sys_ni_syscall(regs);
++		heap_regs->ax = __x64_sys_ni_syscall(heap_regs);
+ 	}
+ 
+ 	instrumentation_end();
++
++	memcpy(regs, heap_regs, offsetof(struct pt_regs, ip));
++	kfree(heap_regs);
+ 	syscall_exit_to_user_mode(regs);
+ }
+ #endif
