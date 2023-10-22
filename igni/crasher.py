@@ -21,7 +21,7 @@ MAX_RETRY_TIMES = 10
 SUCCESS_BANNER = b'Analysis Success!!!'
 
 UTIL_DIR = os.path.join(os.path.dirname(__file__), "utils")
-KEY_PATH = os.path.join(UTIL_DIR, "img", "stretch.id_rsa")
+KEY_PATH = os.path.join(UTIL_DIR, "img", "buster.id_rsa")
 GDB_SCRIPT = os.path.join(UTIL_DIR, "gdb.py")
 PATCH_SCRIPT = os.path.join(UTIL_DIR, "patch.py")
 ANALYZE_SCRIPT = os.path.join(UTIL_DIR, "analyze.py")
