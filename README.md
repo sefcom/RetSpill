@@ -23,14 +23,17 @@ Igni can cast a burst of flame to enemies and and set enemies on fire if they ar
 ## Setup
 
 ### Install Dependencies
-TODO
+Install rust as instructed by its [official website](https://www.rust-lang.org/tools/install).
 ~~~
 cargo install ropr
 ~~~
 
 ### Build QEMU
-v7.2.0
-TODO
+Igni uses QEMU v7.2.0 internally and it has to be v7.2.0. QEMU with version lower or higher than v7.2.0 has issues reconnecting to gdb after snapshot restoration.
+~~~
+git clone -b v7.2.0 --depth 1 https://git.qemu.org/git/qemu.git
+mkdir qemu/build && cd qemu/build && ../configure --target-list=x86_64-softmmu --python=`which python3` --disable-debug-info --enable-slirp && make -j`nproc`
+~~~
 
 ### Build File System Image
 ~~~
