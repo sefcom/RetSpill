@@ -22,20 +22,35 @@ Igni can cast a burst of flame to enemies and and set enemies on fire if they ar
 
 ## Setup
 
-### Install Dependencies
+## Method 1: Use Docker
+Follow Method2-step3 to build the file system image and then run
+~~~
+docker build -t retspill .
+~~~
+to build the docker image.
+Then run
+~~~
+docker run --privileged -it --rm retspill bash
+~~~
+to play with IGNI.
+Notice that `privileged` is necessary because we want to run qemu inside docker with kvm acceleration.
+
+## Method 2: Build from source
+
+### Step 1: Install Dependencies
 Install rust as instructed by its [official website](https://www.rust-lang.org/tools/install).
 ~~~
 cargo install ropr
 ~~~
 
-### Build QEMU
+### Step 2: Build QEMU
 Igni uses QEMU v7.2.0 internally and it has to be v7.2.0. QEMU with version lower or higher than v7.2.0 has issues reconnecting to gdb after snapshot restoration.
 ~~~
 git clone -b v7.2.0 --depth 1 https://git.qemu.org/git/qemu.git
 mkdir qemu/build && cd qemu/build && ../configure --target-list=x86_64-softmmu --python=`which python3` --disable-debug-info --enable-slirp && make -j`nproc`
 ~~~
 
-### Build File System Image
+### Step 3: Build File System Image
 ~~~
 cd scripts/create-image/ && ./create-image.sh && cd ../..
 ~~~
@@ -43,7 +58,7 @@ cd scripts/create-image/ && ./create-image.sh && cd ../..
 ## Sample Usage
 Run the following command, where `<retspill>/exploit_env/CVEs/CVE-2010-2959/poc/poc` is a proof-of-concept binary that will crash the kernel at `PC==0xffffffffdeadbeef`.
 ~~~
-python analyzer.py -k <retspill>/exploit_env/CVEs/CVE-2010-2959/kernel/arch/x86/boot/bzImage -e <retspill>/exploit_env/CVEs/CVE-2010-2959/poc/poc
+python3 analyzer.py -k <retspill>/exploit_env/CVEs/CVE-2010-2959/kernel/arch/x86/boot/bzImage -e <retspill>/exploit_env/CVEs/CVE-2010-2959/poc/poc
 ~~~
 After about 5-10 minutes, the system will output something like the following:
 ~~~
