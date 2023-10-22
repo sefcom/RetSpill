@@ -43,11 +43,19 @@ else
 	FLAGS='-cpu kvm64 -S'
 fi
 
+# resolve QEMU
+if [ -f /qemu/build/qemu-system-x86_64 ];
+then
+	QEMU=/qemu/build/qemu-system-x86_64
+else
+	QEMU=qemu-system-x86_64
+fi
+
 # resolve image path
 list=($(dirname $0)/img/*.img)
 IMAGE=${list[0]}
 
-/home/kylebot/src/qemu/build/qemu-system-x86_64 \
+$QEMU \
   -snapshot \
   -kernel $KERNEL \
   -hda $IMAGE \
