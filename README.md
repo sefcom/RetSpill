@@ -13,7 +13,31 @@ This repository contains the dataset we used in the paper and our research proto
 
 # Paper
 
-To be presented at CCS 2023
+We describe our findings in the full paper
+
+[__RetSpill: Igniting User-Controlled Data to Burn Away Linux Kernel Protections__](https://dl.acm.org/doi/abs/10.1145/3576915.3623220)
+
+Kyle Zeng, Zhenpeng Lin, Kangjie Lu, Xinyu Xing, Ruoyu Wang, Adam, Doupé, Yan Shoshitaishvili, and Tiffany Bao
+
+*In Proceedings of ACM CCS Nov 2023,*
+```
+@inproceedings{zeng2023retspill,
+  author = {Zeng, Kyle and Lin, Zhenpeng and Lu, Kangjie and Xing, Xinyu and Wang, Ruoyu and Doup\'{e}, Adam and Shoshitaishvili, Yan and Bao, Tiffany},
+  title = {RetSpill: Igniting User-Controlled Data to Burn Away Linux Kernel Protections},
+  year = {2023},
+  isbn = {9798400700507},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi-org.ezproxy1.lib.asu.edu/10.1145/3576915.3623220},
+  doi = {10.1145/3576915.3623220},
+  booktitle = {Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security},
+  pages = {3093–3107},
+  numpages = {15},
+  keywords = {os security, privilege escalation, kernel exploitation},
+  location = {, Copenhagen, Denmark, },
+  series = {CCS '23}
+}
+```
 
 # IGNI
 
