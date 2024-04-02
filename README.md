@@ -17,7 +17,7 @@ We describe our findings in the full paper
 
 [__RetSpill: Igniting User-Controlled Data to Burn Away Linux Kernel Protections__](https://dl.acm.org/doi/abs/10.1145/3576915.3623220)
 
-Kyle Zeng, Zhenpeng Lin, Kangjie Lu, Xinyu Xing, Ruoyu Wang, Adam, Doupé, Yan Shoshitaishvili, and Tiffany Bao
+Kyle Zeng, Zhenpeng Lin, Kangjie Lu, Xinyu Xing, Ruoyu Wang, Adam Doupé, Yan Shoshitaishvili, and Tiffany Bao
 
 *In Proceedings of ACM CCS Nov 2023,*
 ```
