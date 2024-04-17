@@ -10,7 +10,8 @@ import angr
 import tqdm
 from elftools.elf.elffile import ELFFile
 from angrop import rop_utils
-from angrop.gadget_analyzer import GadgetAnalyzer
+from angrop.rop_gadget import RopGadget
+from angrop.gadget_finder.gadget_analyzer import GadgetAnalyzer
 
 from log import new_logger
 
@@ -108,7 +109,7 @@ class ChainBuilder:
         gadgets = self.analyze_gadgets(addrs)
         # TODO: well, we hate memory accesses, so for now, we don't allow it. maybe we can allow it
         # in the future when we can track crashing registers
-        pivot_gadgets = [x for x in gadgets if len(x.mem_changes)+len(x.mem_reads)+len(x.mem_writes) == 0 and x.bp_moves_to_sp is False]
+        pivot_gadgets = [x for x in gadgets if len(x.mem_changes)+len(x.mem_reads)+len(x.mem_writes) == 0 and type(x) == RopGadget]
 
         # now collect pivot gadgets
         d = defaultdict(list)
@@ -140,7 +141,7 @@ class ChainBuilder:
         addrs = [int(addr_pattern.search(x).group(0), 16) for x in lines1+lines2]
         gadgets = self.analyze_gadgets(addrs)
         self.rdi_gadgets = [x for x in gadgets if len(x.mem_changes)+len(x.mem_reads)+len(x.mem_writes) == 0 and
-                                         'rdi' in x.popped_regs and x.bp_moves_to_sp is False]
+                                         'rdi' in x.popped_regs and type(x) == RopGadget]
         #### look for ret gadget ####
         lines1 = [x for x in lines if ': ret;' in x]
         addrs = [int(addr_pattern.search(x).group(0), 16) for x in lines1]
@@ -155,7 +156,7 @@ class ChainBuilder:
         rdi_offsets = [0]*len(self.rdi_gadgets)
         for i in range(len(self.rdi_gadgets)):
             g = self.rdi_gadgets[i]
-            init_state = self.ganalyzer._test_symbolic_state.copy()
+            init_state = self.ganalyzer._state.copy()
             init_state.ip = g.addr
             final_state = rop_utils.step_to_unconstrained_successor(self.project, state=init_state)
             var_list = list(final_state.regs.rdi.variables)
@@ -390,7 +391,7 @@ class ChainBuilder:
         self.vmlinux_path = vmlinux_path
 
         self.project = angr.Project(self.vmlinux_path)
-        self.ganalyzer = GadgetAnalyzer(self.project, True, stack_length=0x200) # be generous, just give it a whole page
+        self.ganalyzer = GadgetAnalyzer(self.project, True, stack_gsize=0x200) # be generous, just give it a whole page
 
         # extract the range of .text section
         with open(self.vmlinux_path, "rb") as f:
